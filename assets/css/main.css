@@ -222,8 +222,7 @@ h6 {
 .header.header-show {
     left: 0;
   }
-
-.header .header-toggle {
+.header-toggle {
   color: var(--background-color);
   background-color: var(--accent-color);
   font-size: 22px;
@@ -239,10 +238,10 @@ h6 {
   right: 15px;
   z-index: 9999;
   transition: 0.3s;
-   
+  border: none; /* Remove default button border */
 }
 
-.header .header-toggle:hover {
+.header-toggle:hover {
   background-color: color-mix(in srgb, var(--accent-color) 90%, black 15%);
 }
 
