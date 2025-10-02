@@ -222,6 +222,8 @@ h6 {
 .header.header-show {
     left: 0;
   }
+
+/* Hamburger toggle button (fixed outside header) */
 .header-toggle {
   color: var(--background-color);
   background-color: var(--accent-color);
@@ -238,11 +240,42 @@ h6 {
   right: 15px;
   z-index: 9999;
   transition: 0.3s;
-  border: none; /* Remove default button border */
+  border: none;
 }
 
 .header-toggle:hover {
   background-color: color-mix(in srgb, var(--accent-color) 90%, black 15%);
+}
+
+/* Close button inside header */
+.header-close {
+  color: var(--background-color);
+  background-color: var(--accent-color);
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 9px;
+  cursor: pointer;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 10;
+  transition: 0.3s;
+  border: none;
+}
+
+.header-close:hover {
+  background-color: color-mix(in srgb, var(--accent-color) 90%, black 15%);
+}
+
+/* Hide close button on desktop */
+@media (min-width: 1200px) {
+  .header-close {
+    display: none;
+  }
 }
 
 /*--------------------------------------------------------------

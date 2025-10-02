@@ -3,40 +3,55 @@
   "use strict";
 
   /**
-   * Header toggle
-   */
-  const headerToggleBtn = document.querySelector('.header-toggle');
+ * Header toggle
+ */
+const headerToggleBtn = document.querySelector('.header-toggle');
+const headerCloseBtn = document.querySelector('.header-close');
+const header = document.querySelector('#header');
 
-  function headerToggle() {
-    document.querySelector('#header').classList.toggle('header-show');
-    headerToggleBtn.classList.toggle('bi-list');
-    headerToggleBtn.classList.toggle('bi-x');
+function headerToggle() {
+  header.classList.toggle('header-show');
+}
+
+// Open menu with hamburger button (no icon toggle - stays as hamburger)
+headerToggleBtn.addEventListener('click', headerToggle);
+
+// Close menu with close button inside header
+headerCloseBtn.addEventListener('click', headerToggle);
+
+// Close menu on outside click
+document.addEventListener('click', function(event) {
+  const isClickInsideHeader = header.contains(event.target);
+  const isClickOnToggle = headerToggleBtn.contains(event.target);
+  
+  // Only close if click is outside header AND outside toggle button AND menu is open
+  if (!isClickInsideHeader && !isClickOnToggle && header.classList.contains('header-show')) {
+    headerToggle();
   }
-  headerToggleBtn.addEventListener('click', headerToggle);
+});
 
-  /**
-   * Hide mobile nav on same-page/hash links
-   */
-  document.querySelectorAll('#navmenu a').forEach(navmenu => {
-    navmenu.addEventListener('click', () => {
-      if (document.querySelector('.header-show')) {
-        headerToggle();
-      }
-    });
-
+/**
+ * Hide mobile nav on same-page/hash links
+ */
+document.querySelectorAll('#navmenu a').forEach(navmenu => {
+  navmenu.addEventListener('click', () => {
+    if (document.querySelector('.header-show')) {
+      headerToggle();
+    }
   });
+});
 
-  /**
-   * Toggle mobile nav dropdowns
-   */
-  document.querySelectorAll('.navmenu .toggle-dropdown').forEach(navmenu => {
-    navmenu.addEventListener('click', function(e) {
-      e.preventDefault();
-      this.parentNode.classList.toggle('active');
-      this.parentNode.nextElementSibling.classList.toggle('dropdown-active');
-      e.stopImmediatePropagation();
-    });
+/**
+ * Toggle mobile nav dropdowns
+ */
+document.querySelectorAll('.navmenu .toggle-dropdown').forEach(navmenu => {
+  navmenu.addEventListener('click', function(e) {
+    e.preventDefault();
+    this.parentNode.classList.toggle('active');
+    this.parentNode.nextElementSibling.classList.toggle('dropdown-active');
+    e.stopImmediatePropagation();
   });
+});
 
   /**
    * Preloader
