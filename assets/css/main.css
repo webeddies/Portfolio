@@ -1683,7 +1683,7 @@ section,
 }
 
 .portfolio .portfolio-card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-6px);
 }
 
 .portfolio .portfolio-image {
